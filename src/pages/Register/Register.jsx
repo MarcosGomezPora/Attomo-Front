@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import './Register.scss'
 
 const Register = () => {
 
@@ -40,41 +40,44 @@ const Register = () => {
     <div>
     {successMessage && <p>{successMessage}</p>}
     <form onSubmit={handleSubmit}>
-    <label>
-      Name:
-      <input
-        type="text"
-        name="name"
-        value={formData.name}
-        onChange={handleInputChange}
-      />
-    </label>
-    <label>
-      Nombre de usuario:
-      <input
-        type="text"
-        name="user"
-        value={formData.user}
-        onChange={handleInputChange}
-      />
-    </label>
-    <label>
-      Password:
-      <input
-        type="password"
-        name="password"
-        value={formData.password}
-        onChange={handleInputChange}
-      />
-    </label>
-    <label>
-      Role:
-      <select name="role" value={formData.role} onChange={handleInputChange}>
-        <option value="user">User</option>
-        <option value="admin">Admin</option>
-      </select>
-    </label>
-    <button type="submit">Submit</button>
+    <div className='inputDiv'>
+      <label>
+        <input className='inputDiv__input'
+          type="text"
+          name="name"
+          placeholder='Nombre'
+          value={formData.name}
+          onChange={handleInputChange}
+        />
+      </label>
+      <label>
+        <input className='inputDiv__input'
+          type="text"
+          name="user"
+          placeholder='Nombre de usuario'
+          value={formData.user}
+          onChange={handleInputChange}
+        />
+      </label>
+      <label>
+        <input className='inputDiv__input'
+          type="password"
+          name="password"
+          placeholder='Contraseña'
+          value={formData.password}
+          onChange={handleInputChange}
+        />
+      </label>
+      <label>
+        Rol:
+        <select className='inputDiv__input' name="role" value={formData.role} onChange={handleInputChange}>
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
+      </label>
+    </div>
+    
+    <button type="submit" className='button'>Submit</button>
   </form>
   </div>
 );

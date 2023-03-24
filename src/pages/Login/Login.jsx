@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Login.scss'
 
 const Login = ({ onLogin }) => {
   const [formData, setFormData] = useState({
@@ -43,25 +44,28 @@ const Login = ({ onLogin }) => {
     <div>
       {errorMessage && <p>{errorMessage}</p>}
       <form onSubmit={handleSubmit}>
-        <label>
-          Username:
-          <input
-            type="text"
-            name="user"
-            value={formData.user}
-            onChange={handleInputChange}
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleInputChange}
-          />
-        </label>
-        <button type="submit">Submit</button>
+        <div className='inputDiv'>
+          <label>
+            <input className='inputDiv__input'
+              type="text"
+              name="user"
+              placeholder='Usuario'
+              value={formData.user}
+              onChange={handleInputChange}
+            />
+          </label>
+          <label>
+            <input className='inputDiv__input'
+              type="password"
+              name="password"
+              placeholder='Contraseña'
+              value={formData.password}
+              onChange={handleInputChange}
+            />
+          </label>
+        </div>
+        
+        <button className='button' type="submit">Iniciar sesión</button>
       </form>
     </div>
   );
