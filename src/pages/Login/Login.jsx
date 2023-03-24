@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 
-
-const Login = () => {
+const Login = ({ onLogin }) => {
   const [formData, setFormData] = useState({
-    username: '',
+    user: '',
     password: '',
   });
   const [errorMessage, setErrorMessage] = useState('');
@@ -17,7 +16,7 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch('https://attomo-back-1175.vercel.app/login', {
+    fetch('https://attomo-back-1175.vercel.app/users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -32,6 +31,7 @@ const Login = () => {
       })
       .then((data) => {
         console.log(data);
+        onLogin(data.user, data.isAdmin);
       })
       .catch((error) => {
         setErrorMessage(error.message);
@@ -47,8 +47,8 @@ const Login = () => {
           Username:
           <input
             type="text"
-            name="username"
-            value={formData.username}
+            name="user"
+            value={formData.user}
             onChange={handleInputChange}
           />
         </label>
@@ -66,4 +66,5 @@ const Login = () => {
     </div>
   );
 };
-export default Login
+
+export default Login;

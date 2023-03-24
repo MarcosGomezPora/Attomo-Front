@@ -1,0 +1,29 @@
+.h1 {
+    font-size: 35px;
+}
+.voteFilter {
+    display: flex;
+    background-color: #F7EFE5;
+    justify-content: space-evenly;
+}
+.list {
+   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  list-style-type: none;
+  
+   &_li-container {
+    width: 600px;
+    height: 700px;
+   }
+    &__divImage {
+        width: 600px;
+        height: 300px;
+        &-img {
+            
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+    }
+}

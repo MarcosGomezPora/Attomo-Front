@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.scss';
 import Navbar from './components/Navbar/Navbar';
@@ -6,45 +6,44 @@ import Games from './pages/Games/Games';
 import Register from './pages/Register/Register';
 import Login from './pages/Login/Login';
 import CreateGame from './pages/CreateGame/CreateGame';
-/* import axios from 'axios'; */
-
-/* const baseURL = "https://attomo-back-1175.vercel.app/" */
 
 function App() {
-  /* const [game, setGame] = React.useState(null);
+  
+  const [user, setUser] = useState({
+    user: '',
+    isAdmin: false,
+    isAuthenticated: false
+  });
 
-  React.useEffect(() => {
-    axios.get(baseURL).then((response) => {
-      setGame(response.data);
+  const handleLogin = (user, isAdmin) => {
+    setUser({
+      user: user,
+      isAdmin: isAdmin,
+      isAuthenticated: true
     });
-  }, []);
+  };
 
-  if (!game) return null; */
-  /* const [data, setData] = React.useState(null);
-
-  React.useEffect(() => {
-    fetch("https://attomo-back-1175.vercel.app/")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
-  }, []); */
-
-  /* if (!data) {
-    
-    return <p>Loading...</p>;
-  } */
+  const handleLogout = () => {
+    setUser({
+      user: '',
+      isAdmin: false,
+      isAuthenticated: false
+    });
+  };
 
   return (
     <div className="App">
-      <Navbar />
+      <Navbar user={user} onLogout={handleLogout} />
       <div>
         <Routes>
           <Route path='/games' element={<Games />} />
-          <Route path='/games/create' element={<CreateGame />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/login' element={<Login />} />
+          {user.isAdmin && (
+            <Route path='/games/create' element={<CreateGame />} />
+          )}
+          <Route path='/users/register' element={<Register />} />
+          <Route path='/users/login' element={<Login onLogin={handleLogin} />} />
         </Routes>
       </div>
-      
     </div>
   );
 }
